@@ -27,7 +27,7 @@ Herramientas recomendadas: Heroku - Vercel - Netlify - Firebase - GithubPages( s
 
 ## Construido con 🛠️
 
-_Esta API fue construida con las siguientes herramientas_
+_Este template fue construido con las siguientes herramientas_
 
 * [Threejs](https://threejs.org/) - Library 3D for Web
 * [HTML](https://www.w3schools.com/html/) - Hyper Text Markup Lenguage
