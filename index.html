@@ -47,13 +47,13 @@
 
 
             //Controls
-            /*   controls = new OrbitControls(camera, renderer.domElement)
-              controls.target = new THREE.Vector3();
-              controls.enableDamping = true;
-              controls.target.y = -100; */
+            controls = new OrbitControls(camera, renderer.domElement)
+            controls.target = new THREE.Vector3();
+            controls.enableDamping = true;
+            controls.target.y = -100;
 
             /*  gltfLoader = new GLTFLoader();
-             gltfLoader.load('./model/planets/Planets.gltf',
+             gltfLoader.load('./assets/model/*.gltf',
                  (gltf) => {
                      scene.add(gltf.scene)
                  },
@@ -68,12 +68,12 @@
 
             //Env map
             /* envMap = new THREE.CubeTextureLoader().load([
-                './env/px.png',
-                './env/nx.png',
-                './env/py.png',
-                './env/ny.png',
-                './env/pz.png',
-                './env/nz.png',
+                './assets/env/px.png',
+                './assets/env/nx.png',
+                './assets/env/py.png',
+                './assets/env/ny.png',
+                './assets/env/pz.png',
+                './assets/env/nz.png',
             ])
             scene.background = envMap; */
 
@@ -99,7 +99,6 @@
         init();
 
     </script>
-    <script type="module" src="js/three.js"></script>
 </body>
 
 </html>
