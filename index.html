@@ -41,11 +41,16 @@
             envMap,
             mouse,
             raycaster,
-            planets = [
-                'sun',
-                'brown',
-                'black'
-            ]
+            brown,
+            orange,
+            blue,
+            green,
+            darkblue,
+            sun,
+            white,
+            black
+
+
 
         const init = () => {
 
@@ -72,21 +77,37 @@
             controls.enabled = false;
 
             gltfLoader = new GLTFLoader();
-            gltfLoader.load('./assets/model/Planets1/Planets_organized.gltf',
+            gltfLoader.load('./assets/model/Planets/Planets_organized.gltf',
                 (gltf) => {
                     scene.add(gltf.scene)
+                    brown = gltf.scene.children.find((child) => child.name === "brown");
+                    orange = gltf.scene.children.find((child) => child.name === "orange");
+                    blue = gltf.scene.children.find((child) => child.name === "blue");
+                    green = gltf.scene.children.find((child) => child.name === "green");
+                    darkblue = gltf.scene.children.find((child) => child.name === "darkblue");
+                    sun = gltf.scene.children.find((child) => child.name === "sun");
+                    white = gltf.scene.children.find((child) => child.name === "white");
+                    black = gltf.scene.children.find((child) => child.name === "black");
+
                     mixer = new THREE.AnimationMixer(gltf.scene);
                     clips = gltf.animations;
                     clips.forEach(function (clip) {
                         action = mixer.clipAction(clip);
-                        action.timeScale = 1 / 30;
+                        if (clip.name === "sunAction") {
+                            action.timeScale = 1 / 10;
+                        }
+                        else {
+                            action.timeScale = 1 / 70;
+                        }
+                        action.time = 100;
                         action.play()
+                        console.log(action);
+
                     });
                 },
                 () => { },
                 () => { }
             );
-
 
             //Lights
             ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
@@ -122,6 +143,7 @@
             ])
 
             scene.background = envMap;
+            scene.environment = envMap;
 
             animate();
         }
@@ -144,31 +166,94 @@
             let intersects = raycaster.intersectObjects(scene.children);
             if (intersects.length > 0) {
                 for (let i = 0; i < intersects.length; i++) {
-                    // console.log(intersects[i]);
-                    // if (intersects[i].object.userData === {})
-                    console.log(intersects[i].object);
-                    //intersects[i].object.scale.set(83, 83, 83);
-                    //     if (intersects[i].object.name === 'white') {
-                    //         // if (intersects[i].object.id === 33) {
-                    // intersects[i].object.scale.set(83, 83, 83);
+                    switch (intersects[i].object.name) {
 
-                    // }
+                        case "brown":
+                            brown.scale.set(38, 38, 38);
+                            break;
 
-                    // }
-                    // if (intersects[i].object.userData.name === 'orange') {
-                    //     intersects[i].object.scale.set(83, 83, 83);
-                    // }
+                        case "orangeMesh":
+                            orange.scale.set(26, 26, 26);
+                            break;
+
+                        case "orangeMesh_1":
+                            orange.scale.set(26, 26, 26);
+                            break;
+
+                        case "blueMesh":
+                            blue.scale.set(33, 33, 33);
+                            break;
+
+                        case "blueMesh_1":
+                            blue.scale.set(33, 33, 33);
+                            break;
+
+                        case "greenMesh":
+                            green.scale.set(30, 30, 30);
+                            break;
+
+                        case "greenMesh_1":
+                            green.scale.set(30, 30, 30);
+                            break;
+
+                        case "darkblueMesh":
+                            darkblue.scale.set(28, 28, 28);
+                            break;
+
+                        case "darkblueMesh_1":
+                            darkblue.scale.set(28, 28, 28);
+                            break;
+
+                        case "sun":
+                            sun.scale.set(83, 83, 83);
+                            break;
+
+                        case "whiteMesh":
+                            white.scale.set(43, 43, 43);
+                            break;
+
+                        case "whiteMesh_1":
+                            white.scale.set(43, 43, 43);
+                            break;
+
+                        case "black":
+                            black.scale.set(23, 23, 23);
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
             }
         }
 
         //Reset planet hover
         const resetHover = () => {
-            for (let i = 0; i < scene.children.length; i++) {
-                if (scene.children[i].children[i]) {
-                    //   scene.children[i].children[i].scale.set(80, 80, 80);
-                }
-            }
+            if (brown)
+                brown.scale.set(35, 35, 35)
+
+            if (orange)
+                orange.scale.set(23, 23, 23)
+
+            if (blue)
+                blue.scale.set(30, 30, 30)
+
+
+            if (green)
+                green.scale.set(27, 27, 27);
+
+            if (darkblue)
+                darkblue.scale.set(25, 25, 25);
+
+            if (sun)
+                sun.scale.set(80, 80, 80);
+
+            if (white)
+                white.scale.set(40, 40, 40);
+
+            if (black)
+                black.scale.set(20, 20, 20);
+
         }
 
         //Viewport mouse movement 
