@@ -1,4 +1,4 @@
-# Yeison Toro
+# Jose Durango
 ## Vanilla Threejs Template
 
 ## Comenzando 🚀
